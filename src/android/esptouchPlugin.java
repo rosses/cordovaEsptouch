@@ -64,16 +64,16 @@ public class esptouchPlugin extends CordovaPlugin {
             final String isSsidHiddenStr = args.getString(3);
             final String taskResultCountStr = args.getString(4);
             final int taskResultCount = Integer.parseInt(taskResultCountStr);
-            final Object maLock = new Object();
+            //final Object mLock = new Object();
 
-            //esptouchAsyncTask3 = new EsptouchAsyncTask3();
-            //esptouchAsyncTask3.execute(apSsid, apPassword, null, (byte) 0x09);
+            esptouchAsyncTask3 = new EsptouchAsyncTask3();
+            esptouchAsyncTask3.execute(apSsid, apPassword, null, (byte) 0x09);
 
-            
+            /*
             cordova.getThreadPool().execute(
             new Runnable() {
                 public void run() {
-                    synchronized (maLock) {
+                    synchronized (mLock) {
                         boolean isSsidHidden = false;
                         if (isSsidHiddenStr.equals("YES")) {
                             isSsidHidden = true;
@@ -88,7 +88,7 @@ public class esptouchPlugin extends CordovaPlugin {
                 }
             }//end runnable
             );
-            
+            */
             return true;
 
 
@@ -362,7 +362,7 @@ public class esptouchPlugin extends CordovaPlugin {
          */
         @Override
         protected void onPostExecute(final EGetDevice device) {
-
+            Log.e(TAG, "PRE RUNNABLE HANDLER POST");
             handler.post(new Runnable() {
                 
                 @Override
