@@ -88,7 +88,8 @@ public class esptouchPlugin extends CordovaPlugin {
                 }
             }//end runnable
             );
-            return true;*/
+            */
+            return true;
 
 
         }
