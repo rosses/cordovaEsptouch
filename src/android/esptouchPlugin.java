@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import java.util.List;
-
+import android.widget.Toast;
 
 //import com.espressif.iot.esptouch.EsptouchTask;
 //import com.espressif.iot.esptouch.IEsptouchListener;
@@ -176,7 +176,75 @@ public class esptouchPlugin extends CordovaPlugin {
         }
     };
 
+    private class TCPAsyncTask3 extends AsyncTask<Object, Void, EGetDevice> {
+        /**
+         * the task which establish a TCP connection 
+         */
+        private TCPSetupTask mTCPSetupTask;
+        /**
+         * the task which is TCPAsyncTask3 excute in
+         */
+        private EsptouchAsyncTask3 esptouchAsyncTask3;
+        
+        private final Object mLock = new Object();
+        
+        
+        public TCPAsyncTask3(EsptouchAsyncTask3 esptouchAsyncTask3) {
+            this.esptouchAsyncTask3 = esptouchAsyncTask3;
+        }
+        
+        public void stopTCPTask() {
+            synchronized (mLock) {
+                if (__IEsptouchTask.DEBUG) {
+                    Log.i(TAG, "TCP config is canceled");
+                }
+                if (mTCPSetupTask != null) {
+                    mTCPSetupTask.interrupt();
+                }
+            }
+        }
+
+        @Override
+        protected EGetDevice doInBackground(Object... params) {
+            
+            synchronized (mLock) {
+                EGetDevice device = (EGetDevice) params[0];
+                mTCPSetupTask = new TCPSetupTask(device,
+                        cordova.getActivity());
+          
+            }
+            EGetDevice  eGetDevice = mTCPSetupTask.executeForResult();
+            return eGetDevice;
+        }
 
 
+        /**
+         * the device is which configed ,the important info are contains in the model
+         */
+        @Override
+        protected void onPostExecute(final EGetDevice device) {
+
+            handler.post(new Runnable() {
+                
+                @Override
+                public void run() {
+                    //config
+                    if(esptouchAsyncTask3!=null){
+                        esptouchAsyncTask3.stopEsptouchTask();
+                    }
+                    //if the device return is mean that setup failure
+                    if(device==null||TextUtils.isEmpty(device.getFirmwareMarking())){
+                        Toast.makeText(cordova.getActivity(),"Set up failure,the device mac is "+device.getDmac(), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    
+                    //the device which you setup ,you can get all message from this device
+                    Toast.makeText(cordova.getActivity(),"Set up success,the device mac is "+device.getDmac(), Toast.LENGTH_LONG).show();
+                    Log.e(TAG, device.toString());
+                }
+            });
+        
+        }
+    }
 
 }
