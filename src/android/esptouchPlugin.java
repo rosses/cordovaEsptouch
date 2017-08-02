@@ -122,7 +122,7 @@ public class esptouchPlugin extends CordovaPlugin {
     private IEsptouchListener myListener = new IEsptouchListener() {
         @Override
         public void onEsptouchResultAdded(final IEsptouchResult result) {
-            String text = "bssid="+ result.getBssid()+",InetAddress="+result.getInetAddress().getHostAddress();
+            String text = "bssid="+result.toString();//+ result.getBssid()+",InetAddress="+result.getInetAddress().getHostAddress();
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, text);
             pluginResult.setKeepCallback(true);           // keep callback after this call
             //receivingCallbackContext.sendPluginResult(pluginResult);    //modified by lianghuiyuan
