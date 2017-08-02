@@ -86,14 +86,15 @@ public class esptouchPlugin extends CordovaPlugin {
                             eGetDevice.setUserMarking("1");
                             eGetDevice.setOrderMarking("GAS15N");
                             eGetDevice.setDeviceName("DASH_BUTTON");
-
                             JSONObject output = new JSONObject();
-
+                            try { 
                             output.put("res", "OK");
                             output.put("did", did);
                             output.put("ip", ip);
                             output.put("mac", macString);
-
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage())
+                            }
                             mTCPSetupTask = new TCPSetupTask(eGetDevice,cordova.getActivity());
                             EGetDevice eGetDeviceResult = mTCPSetupTask.executeForResult();
 
@@ -102,9 +103,13 @@ public class esptouchPlugin extends CordovaPlugin {
                             receivingCallbackContext.sendPluginResult(result);
                             //receivingCallbackContext.success("finished");
                         } else {
+                            
                             JSONObject output = new JSONObject();
-
+                            try {
                             output.put("res", "ERR");
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage())
+                            }
 
                             PluginResult result = new PluginResult(PluginResult.Status.ERROR, output.toString());
                             result.setKeepCallback(true);           // keep callback after this call
