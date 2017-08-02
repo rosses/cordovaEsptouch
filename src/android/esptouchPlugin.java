@@ -14,15 +14,15 @@ import java.util.List;
 
 
 
-//import com.ogemray.smartcofig_tcp.model.EGetDevice;
-//import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
+import com.ogemray.smartcofig_tcp.model.EGetDevice;
+import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
 import com.ogemray.smartconfig4.EsptouchTask;
 import com.ogemray.smartconfig4.IEsptouchListener;
 import com.ogemray.smartconfig4.IEsptouchResult;
 import com.ogemray.smartconfig4.IEsptouchTask;
 import com.ogemray.smartconfig4.task.__IEsptouchTask;
-//import com.ogemray.smartconfig4.util.BytesUtil;
-//import com.ogemray.smartconfig4demo.utils.BytesIO;
+import com.ogemray.smartconfig4.util.BytesUtil;
+import com.ogemray.smartconfig4demo.utils.BytesIO;
 
 
 
@@ -90,7 +90,54 @@ public class esptouchPlugin extends CordovaPlugin {
                             	// sb.append("\nthere's " + (resultList.size() - count)
                             			// + " more resultList(s) without showing\n");
                             // }
-                            PluginResult result = new PluginResult(PluginResult.Status.OK, "finished");
+                            TCPAsyncTask3 tcpAsyncTask3;
+                            BytesIO io = new BytesIO(firstResult.getUserData());
+                            //jump to 18 position
+                            io.getBytes(18);
+                            //did is in relation ids,did is the device id
+                            int did = io.getInt();
+                            //jump to contnent
+                            io.getBytes(18);
+
+                            //device recovery version
+                            int recoveryVersion = io.getShort();
+
+                            //major version must be 0x09
+                            int majorVersion = io.get()&0xFF;
+                            //minor version must be 0x02
+                            int minorVersion  =  io.get()&0xFF;
+
+                            //the ip of the device
+                            String ip = io.getIPString();
+
+                            //the mac of the device
+                            String macString = io.getMacString();
+
+                            //the special of device ,now is useless
+                            byte[] deviceSpecial = io.getBytes(8);
+
+                            //the status of the device
+                            int configFlag = io.getInt();
+
+                            int len = io.getShort();
+
+                            //the device status ,is lower battery
+                            byte[] deviceState = io.getBytes(len);
+                            
+                            EGetDevice eGetDevice = new EGetDevice();
+                            eGetDevice.setDid(did);
+                            eGetDevice.setIp(ip);
+                            eGetDevice.setDmac(macString);
+                            
+                            //there set the markings use fix data,you can set you own data which you custom
+                            eGetDevice.setUserMarking("1");
+                            eGetDevice.setOrderMarking("16");
+                            eGetDevice.setDeviceName("eg003");
+                            
+                            tcpAsyncTask3 = new TCPAsyncTask3(this);
+                            tcpAsyncTask3.execute(eGetDevice);
+
+                            PluginResult result = new PluginResult(PluginResult.Status.OK, macString);
                             result.setKeepCallback(true);           // keep callback after this call
                             receivingCallbackContext.sendPluginResult(result);
                             //receivingCallbackContext.success("finished");
