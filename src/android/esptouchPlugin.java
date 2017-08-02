@@ -5,24 +5,26 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import java.util.List;
 
-import com.espressif.iot.esptouch.EsptouchTask;
-import com.espressif.iot.esptouch.IEsptouchListener;
-import com.espressif.iot.esptouch.IEsptouchResult;
-import com.espressif.iot.esptouch.IEsptouchTask;
-import com.espressif.iot.esptouch.task.__IEsptouchTask;
+
+//import com.espressif.iot.esptouch.EsptouchTask;
+//import com.espressif.iot.esptouch.IEsptouchListener;
+//import com.espressif.iot.esptouch.IEsptouchResult;
+//import com.espressif.iot.esptouch.IEsptouchTask;
+//import com.espressif.iot.esptouch.task.__IEsptouchTask;
 
 
-/*
-import com.ogemray.smartcofig_tcp.model.EGetDevice;
-import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
+
+//import com.ogemray.smartcofig_tcp.model.EGetDevice;
+//import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
 import com.ogemray.smartconfig4.EsptouchTask;
 import com.ogemray.smartconfig4.IEsptouchListener;
 import com.ogemray.smartconfig4.IEsptouchResult;
 import com.ogemray.smartconfig4.IEsptouchTask;
 import com.ogemray.smartconfig4.task.__IEsptouchTask;
-import com.ogemray.smartconfig4.util.BytesUtil;
-import com.ogemray.smartconfig4demo.utils.BytesIO;
-*/
+//import com.ogemray.smartconfig4.util.BytesUtil;
+//import com.ogemray.smartconfig4demo.utils.BytesIO;
+
+
 
 
 import org.apache.cordova.CallbackContext;
@@ -38,7 +40,10 @@ import java.util.ArrayList;
 public class esptouchPlugin extends CordovaPlugin {
 	
 	CallbackContext receivingCallbackContext = null;
-	IEsptouchTask mEsptouchTask;
+	//IEsptouchTask mEsptouchTask;
+    EsptouchAsyncTask3 esptouchAsyncTask3;
+
+
 	@Override
     public boolean execute(String action, final JSONArray args,final CallbackContext callbackContext) throws JSONException{
         receivingCallbackContext = callbackContext;    //modified by lianghuiyuan
@@ -58,7 +63,9 @@ public class esptouchPlugin extends CordovaPlugin {
                         if (isSsidHiddenStr.equals("YES")) {
                             isSsidHidden = true;
                         }
-                        mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, isSsidHidden, cordova.getActivity());
+
+                        //mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, isSsidHidden, cordova.getActivity());
+                        mEsptouchTask = new EsptouchTask(apSsid, apPassword, null, (byte) 0x09, cordova.getActivity());
                         mEsptouchTask.setEsptouchListener(myListener);
                     }
                     List<IEsptouchResult> resultList = mEsptouchTask.executeForResults(taskResultCount);
