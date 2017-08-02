@@ -3,8 +3,13 @@ package com.icubespace.cordova_esptouch;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Build;
+import android.os.Handler;
 import java.util.List;
+import android.util.Log;
 import android.widget.Toast;
+import android.provider.Settings;
+import android.text.TextUtils;
 
 //import com.espressif.iot.esptouch.EsptouchTask;
 //import com.espressif.iot.esptouch.IEsptouchListener;
