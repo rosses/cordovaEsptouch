@@ -93,7 +93,7 @@ public class esptouchPlugin extends CordovaPlugin {
                             output.put("ip", ip);
                             output.put("mac", macString);
                             } catch (Exception e) {
-                                System.out.println(e.getMessage())
+                                System.out.println(e.getMessage());
                             }
                             mTCPSetupTask = new TCPSetupTask(eGetDevice,cordova.getActivity());
                             EGetDevice eGetDeviceResult = mTCPSetupTask.executeForResult();
@@ -108,7 +108,7 @@ public class esptouchPlugin extends CordovaPlugin {
                             try {
                             output.put("res", "ERR");
                             } catch (Exception e) {
-                                System.out.println(e.getMessage())
+                                System.out.println(e.getMessage());
                             }
 
                             PluginResult result = new PluginResult(PluginResult.Status.ERROR, output.toString());
