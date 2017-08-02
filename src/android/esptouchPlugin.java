@@ -189,12 +189,12 @@ public class esptouchPlugin extends CordovaPlugin {
         /**
          * the task which is TCPAsyncTask3 excute in
          */
-        private EsptouchAsyncTask3 esptouchAsyncTask3;
+        private IEsptouchTask esptouchAsyncTask3;
         
         private final Object mLock = new Object();
         
         
-        public TCPAsyncTask3(EsptouchAsyncTask3 esptouchAsyncTask3) {
+        public TCPAsyncTask3(IEsptouchTask esptouchAsyncTask3) {
             this.esptouchAsyncTask3 = esptouchAsyncTask3;
         }
         
