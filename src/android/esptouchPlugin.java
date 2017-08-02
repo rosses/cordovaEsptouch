@@ -37,6 +37,7 @@ public class esptouchPlugin extends CordovaPlugin {
         if (action.equals("smartConfig")) {
             final String apSsid = args.getString(0);
             final String apPassword = args.getString(1);
+            final int taskResultCount = Integer.parseInt(1); // sirve para + de 1 boton
             final Object mLock = new Object();
             cordova.getThreadPool().execute(
             new Runnable() {
