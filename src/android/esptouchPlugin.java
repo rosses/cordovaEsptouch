@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import java.util.List;
-/*
+
 import com.espressif.iot.esptouch.EsptouchTask;
 import com.espressif.iot.esptouch.IEsptouchListener;
 import com.espressif.iot.esptouch.IEsptouchResult;
 import com.espressif.iot.esptouch.IEsptouchTask;
 import com.espressif.iot.esptouch.task.__IEsptouchTask;
-*/
 
 
-
+/*
 import com.ogemray.smartcofig_tcp.model.EGetDevice;
 import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
 import com.ogemray.smartconfig4.EsptouchTask;
@@ -23,6 +22,7 @@ import com.ogemray.smartconfig4.IEsptouchTask;
 import com.ogemray.smartconfig4.task.__IEsptouchTask;
 import com.ogemray.smartconfig4.util.BytesUtil;
 import com.ogemray.smartconfig4demo.utils.BytesIO;
+*/
 
 
 import org.apache.cordova.CallbackContext;
@@ -58,8 +58,7 @@ public class esptouchPlugin extends CordovaPlugin {
                         if (isSsidHiddenStr.equals("YES")) {
                             isSsidHidden = true;
                         }
-                        mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword,
-                        isSsidHidden, cordova.getActivity());
+                        mEsptouchTask = new EsptouchTask(apSsid, apBssid, apPassword, isSsidHidden, cordova.getActivity());
                         mEsptouchTask.setEsptouchListener(myListener);
                     }
                     List<IEsptouchResult> resultList = mEsptouchTask.executeForResults(taskResultCount);
