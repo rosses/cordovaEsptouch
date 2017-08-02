@@ -40,8 +40,8 @@ import java.util.ArrayList;
 public class esptouchPlugin extends CordovaPlugin {
 	
 	CallbackContext receivingCallbackContext = null;
-	//IEsptouchTask mEsptouchTask;
-    EsptouchAsyncTask3 esptouchAsyncTask3;
+	IEsptouchTask mEsptouchTask;
+    //EsptouchAsyncTask3 esptouchAsyncTask3;
 
 
 	@Override
