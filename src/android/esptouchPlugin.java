@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import java.util.List;
-
+/*
 import com.espressif.iot.esptouch.EsptouchTask;
 import com.espressif.iot.esptouch.IEsptouchListener;
 import com.espressif.iot.esptouch.IEsptouchResult;
 import com.espressif.iot.esptouch.IEsptouchTask;
 import com.espressif.iot.esptouch.task.__IEsptouchTask;
+*/
 
 
 
@@ -22,6 +23,7 @@ import com.ogemray.smartconfig4.IEsptouchTask;
 import com.ogemray.smartconfig4.task.__IEsptouchTask;
 import com.ogemray.smartconfig4.util.BytesUtil;
 import com.ogemray.smartconfig4demo.utils.BytesIO;
+
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
