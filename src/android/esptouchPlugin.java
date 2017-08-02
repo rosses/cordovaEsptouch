@@ -42,7 +42,7 @@ public class esptouchPlugin extends CordovaPlugin {
 	CallbackContext receivingCallbackContext = null;
 	IEsptouchTask mEsptouchTask;
     //EsptouchAsyncTask3 esptouchAsyncTask3;
-
+    private TCPSetupTask mTCPSetupTask;
 
 	@Override
     public boolean execute(String action, final JSONArray args,final CallbackContext callbackContext) throws JSONException{
