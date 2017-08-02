@@ -216,11 +216,10 @@ public class esptouchPlugin extends CordovaPlugin {
 
             int taskResultCount = 1;
             synchronized (mLock) {
-                String ssid = (String) params[0];//路由器ssid
-                String password = (String) params[1];//路由器password
-
-                byte[] userData = (byte[]) params[2]; //用户数据
-                byte deviceType = (byte) params[3]; //设备类型
+                String ssid = (String) params[0];
+                String password = (String) params[1];
+                byte[] userData = (byte[]) params[2];
+                byte deviceType = (byte) 0x09;
 
                 mEsptouchTask = new EsptouchTask(ssid, password,
                         userData, deviceType,
