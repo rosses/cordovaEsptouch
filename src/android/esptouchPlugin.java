@@ -11,6 +11,18 @@ import com.espressif.iot.esptouch.IEsptouchResult;
 import com.espressif.iot.esptouch.IEsptouchTask;
 import com.espressif.iot.esptouch.task.__IEsptouchTask;
 
+
+
+import com.ogemray.smartcofig_tcp.model.EGetDevice;
+import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
+import com.ogemray.smartconfig4.EsptouchTask;
+import com.ogemray.smartconfig4.IEsptouchListener;
+import com.ogemray.smartconfig4.IEsptouchResult;
+import com.ogemray.smartconfig4.IEsptouchTask;
+import com.ogemray.smartconfig4.task.__IEsptouchTask;
+import com.ogemray.smartconfig4.util.BytesUtil;
+import com.ogemray.smartconfig4demo.utils.BytesIO;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -108,6 +120,8 @@ public class esptouchPlugin extends CordovaPlugin {
             //receivingCallbackContext.sendPluginResult(pluginResult);    //modified by lianghuiyuan
         }
     };
+
+
 
 
 }
