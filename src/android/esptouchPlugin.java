@@ -47,6 +47,8 @@ import java.util.ArrayList;
 
 public class esptouchPlugin extends CordovaPlugin {
 	
+    public static final String TAG = "SmartConfigCordovaRosses";
+    private Handler handler;
 	CallbackContext receivingCallbackContext = null;
 	//IEsptouchTask mEsptouchTask;
     EsptouchAsyncTask3 esptouchAsyncTask3;
@@ -90,13 +92,14 @@ public class esptouchPlugin extends CordovaPlugin {
 
 
         }
-        else if (action.equals("cancelConfig")) {
+        /*else if (action.equals("cancelConfig")) {
             mEsptouchTask.interrupt();
             PluginResult result = new PluginResult(PluginResult.Status.OK, "cancel success");
             result.setKeepCallback(true);           // keep callback after this call
             receivingCallbackContext.sendPluginResult(result);
             return true;
         }
+        */
         else{
             callbackContext.error("can not find the function "+action);
             return false;
@@ -104,7 +107,7 @@ public class esptouchPlugin extends CordovaPlugin {
     }
 
     private void onEsptoucResultAddedPerform(final IEsptouchResult result) {
-        runOnUiThread(new Runnable() {
+        cordova.getThreadPool().execute(new Runnable() {
 
             @Override
             public void run() {
