@@ -87,19 +87,20 @@ public class esptouchPlugin extends CordovaPlugin {
                             eGetDevice.setDid(did);
                             eGetDevice.setIp(ip);
                             eGetDevice.setDmac(macString);
-                            
+
                             //Custom
-                            eGetDevice.setUserMarking("1");
-                            eGetDevice.setOrderMarking("GAS15N");
-                            eGetDevice.setDeviceName("DASH_BUTTON");
+                            eGetDevice.setUserMarking("3517");
+                            eGetDevice.setOrderMarking("");
+                            eGetDevice.setDeviceName("");
+                            
                             JSONObject output = new JSONObject();
                             try { 
-                            output.put("res", "OK");
-                            output.put("did", did);
-                            output.put("ip", ip);
-                            output.put("mac", macString);
+                              output.put("res", "OK");
+                              output.put("did", did);
+                              output.put("ip", ip);
+                              output.put("mac", macString);
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                              System.out.println(e.getMessage());
                             }
                             mTCPSetupTask = new TCPSetupTask(eGetDevice,cordova.getActivity());
                             EGetDevice eGetDeviceResult = mTCPSetupTask.executeForResult();
