@@ -39,6 +39,12 @@ public class esptouchPlugin extends CordovaPlugin {
             final String apPassword = args.getString(1);
             final int taskResultCount = 1; // sirve para + de 1 boton
             final Object mLock = new Object();
+            
+            System.out.println("ESP TOUCHCONFIG NAME: "+apSsid);
+            System.out.println("ESP TOUCHCONFIG PASS: "+apPassword);
+            
+            
+            
             cordova.getThreadPool().execute(
             new Runnable() {
                 public void run() {
@@ -112,7 +118,7 @@ public class esptouchPlugin extends CordovaPlugin {
                             }
 
                             PluginResult result = new PluginResult(PluginResult.Status.ERROR, output.toString());
-                            result.setKeepCallback(true);           // keep callback after this call
+                            result.setKeepCallback(true);
                             receivingCallbackContext.sendPluginResult(result);
                         }
                     }
