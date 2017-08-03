@@ -10,7 +10,7 @@
 #import "ESPTouchResult.h"
 #import "ESPTouchDelegate.h"
 
-#define DEBUG_ON   YES
+#define DEBUG_ON   NO
 
 @interface ESPTouchTask : NSObject
 
