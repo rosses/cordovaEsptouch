@@ -1,47 +1,29 @@
-# cordovaEsptouch
-a cordova plugin for Esptouch which smartconfig esp8266
-# Install
-cordova plugin add https://github.com/xumingxin7398/cordovaEsptouch.git
+﻿# abastible-cordova
 
-# usage
-1.esptouchPlugin.smartConfig 
+## Installation
 
-//@apSsid,ssid of the wifi,for example: "wifiName"
+##### Install abastible plugin
+`$ cordova plugin add ../abastible-cordova --nofetch --save`
+Point to the folder where the plugin is installed. For example `../abastible-cordova`
 
-//@apBssid,bssid of the wifi,for example "b2:05:2f:92" 
+Can be removed by doing: `cordova plugin remove com.abastible.cordova --nofetch --save`
+##### Important before using
+- Make sure your Ionic app has permission to use the microphone
+- If permission to use the microphone is not given nothing will happen when the method is called.
+- It is expected that the creator of the Ionic app checks if the user as permission before making a measurement.
+- Suggestion for this is to use the [Diagnostics](https://ionicframework.com/docs/native/diagnostic/, "Ionic Native - Diagnostics") plugin
 
-//@apPassword,password of the wifi,for example: "wifiPassword" 
+##### Optional Ionic 2: Setting up the plugin inside the application
+1. Add a `declaration.d.ts` file to the `src` folder in your Ionic project folder.
+2. Add this line to this file:
+```
+declare namespace Abastible {
+function startMeasurement(weight, tarra, type, id, full, success: (result: any) => void, error: (error: any) => void);
+}
+```
+This tells the project that the Method startMeasument from Abastible is able to be used.
+3. Now the plugin is ready to be used and Abastible.startMeasurement can be called.
 
-//@isSsidHiddenStr,default "NO"
-
-//@taskResultCountStr,the count of device you want to config,for example:1
-
-esptouchPlugin.smartConfig(apSsid,apBssid,apPassword,isSsidHiddenStr,taskResultCountStr, function(res) {
-
-  alert(res);
-  
-},function(error){
-
-  console.log(error);
-  
-});
-
-2.esptouchPlugin.cancelConfig
-
-esptouchPlugin.cancelConfig(function(res) {
-
-	console.log(res);
-	
-}, function(error) {
-
-		console.log(error);
-		
-});
-
-#warning 
-
-you must call "esptouchPlugin.cancelConfig" when you want to stop the config,if not it will make some mistake when you call
-"esptouchPlugin.smartConfig" the other time.
-
-
-Since ios emulator does not support the SmartConfig feature,so I did not package the i386 architectures in the "Esptouch.framework".You need to remove i386 architectures in "Build Settings->Architectures" and test your project on a real iphone.
+### Supported platforms
+iOS
+Android

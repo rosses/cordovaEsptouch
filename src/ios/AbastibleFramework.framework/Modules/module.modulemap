@@ -1,0 +1,6 @@
+framework module AbastibleFramework {
+  umbrella header "AbastibleFramework.h"
+
+  export *
+  module * { export * }
+}
