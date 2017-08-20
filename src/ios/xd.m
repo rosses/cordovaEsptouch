@@ -1,5 +1,9 @@
-#import "libSmartConfig.h"
-
+#import "xd.h"
+#import "DataTransform.h"
+#import "RemoteSession.h"
+#import "DeviceModel.h"
+#import "ConfigClass.h"
+#import "HttpManager.h"
 
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 @property (nonatomic, strong) CDVInvokedUrlCommand *command;
