@@ -32,6 +32,10 @@
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
     /*NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];*/
     BOOL isSsidHidden = true;
+    NSLog(@"ESPTouchPlugin: for Cordova by rosses");
+    NSLog(@"ESPTouchPlugin: -------------------");
+    NSString *msgStartConfig = [NSString stringWithFormat:@"ESPTouchPlugin: %@/%@/%@", apSsid, apBssid, apPwd];
+    NSLog(@"%@", msgStartConfig);
     /*
     if([isSsidHiddenStr compare:@"NO"]==NSOrderedSame){
         isSsidHidden=false;
@@ -44,15 +48,20 @@
     esptouchDelegate.commandDelegate=self.commandDelegate;
     [self._esptouchTask setEsptouchDelegate:esptouchDelegate];
     [self._condition unlock];
+    NSLog(@"ESPTouchPlugin: runInBackground line");
     [self.commandDelegate runInBackground:^{
     dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         NSArray * esptouchResultArray = [self._esptouchTask executeForResults:taskCount];
+        
        // show the result to the user in UI Main Thread
         NSString *daStr = @"imlink";
+        NSLog(@"ESPTouchPlugin: queueName");
+        NSLog(@"%@", daStr);
+
         const char *queueName = [daStr UTF8String];
         dispatch_queue_t myQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(myQueue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             ESPTouchResult *firstResult = [esptouchResultArray objectAtIndex:0];
             // check whether the task is cancelled and no results received
             if (!firstResult.isCancelled)
