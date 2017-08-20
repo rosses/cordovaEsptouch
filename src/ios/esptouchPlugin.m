@@ -25,7 +25,7 @@
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
-    NSString *apBssid = nil;//@"";
+    NSString *apBssid = @"";
     /*NSString *apBssid = (NSString *)[command.arguments objectAtIndex:1];*/
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
     /*NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];*/
