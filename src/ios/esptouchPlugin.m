@@ -25,7 +25,7 @@
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
-    NSString *apBssid = @"";
+    NSString *apBssid = nil;//@"";
     /*NSString *apBssid = (NSString *)[command.arguments objectAtIndex:1];*/
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
     /*NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];*/
@@ -94,8 +94,9 @@
                 }
                 else
                 {
+                    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", apSsid, apPwd,  @" fail"];
                     CDVPluginResult* pluginResult = nil;
-                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"Esptouch fail"];
+                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: outputString];
                     [pluginResult setKeepCallbackAsBool:true];
                     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                 }
