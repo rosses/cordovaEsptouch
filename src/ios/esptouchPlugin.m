@@ -34,7 +34,7 @@
     if([isSsidHiddenStr compare:@"NO"]==NSOrderedSame){
         isSsidHidden=false;
     }*/
-    int taskCount = 9;//(int)[[command.arguments objectAtIndex:4] intValue];
+    int taskCount = 1;//(int)[[command.arguments objectAtIndex:4] intValue];
     self._esptouchTask =
     [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
     EspTouchDelegateImpl *esptouchDelegate=[[EspTouchDelegateImpl alloc]init];
@@ -94,7 +94,7 @@
                 }
                 else
                 {
-                    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", apSsid, apPwd,  @" fail"];
+                    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", apSsid, apPwd,  @"fail"];
                     CDVPluginResult* pluginResult = nil;
                     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: outputString];
                     [pluginResult setKeepCallbackAsBool:true];
