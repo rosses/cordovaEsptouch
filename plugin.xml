@@ -34,6 +34,7 @@
 			 <param name="ios-package" value="esptouchPlugin"/>
 		   </feature>
 	   </config-file>
+	   <!--
 	   <header-file src="src/ios/esptouchPlugin.h"/>
        <source-file src="src/ios/esptouchPlugin.m"/>
 	   
@@ -41,6 +42,24 @@
 	   <framework src="UIKit.framework" />
 	   <framework src="Foundation.framework" />
 	   <framework src="src/ios/Esptouch.framework" custom="true" framework="true"/>
+		-->
+	   <header-file src="src/ios/ConfigClass.h"/>
+	   <header-file src="src/ios/DataTransform.h"/>
+	   <source-file src="src/ios/DataTransform.m"/>
+	   <header-file src="src/ios/DeviceModel.h"/>
+	   <source-file src="src/ios/DeviceModel.m"/>
+	   <header-file src="src/ios/RemoteSession.h"/>
+	   <source-file src="src/ios/RemoteSession.m"/>
+	   <header-file src="src/ios/HttpManager.h"/>
+	   <source-file src="src/ios/HttpManager.m"/>
+	   <header-file src="src/ios/xd.h"/>
+       <source-file src="src/ios/xd.m"/>
+	   <source-file src="src/ios/libSmartConfig.a" framework="true" />
+
+	   <framework src="Foundation.framework" />
+	   <framework src="CoreGraphics.framework" />
+	   <framework src="UIKit.framework" />
+
 	</platform>
 	
 </plugin>
