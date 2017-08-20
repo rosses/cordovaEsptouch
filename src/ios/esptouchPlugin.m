@@ -1,6 +1,5 @@
 #import "esptouchPlugin.h"
 
-#define DEBUG_ON 1
 
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 @property (nonatomic, strong) CDVInvokedUrlCommand *command;
