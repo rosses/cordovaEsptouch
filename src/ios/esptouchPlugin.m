@@ -1,5 +1,7 @@
 #import "esptouchPlugin.h"
 
+#define DEBUG_ON   YES
+
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 @property (nonatomic, strong) CDVInvokedUrlCommand *command;
 @property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
@@ -85,7 +87,7 @@
                     }
                     */
 
-                    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @" finished"];
+                    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @"finished"];
 
                     CDVPluginResult* pluginResult = nil;
                     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: outputString];
