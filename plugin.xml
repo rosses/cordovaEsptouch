@@ -27,7 +27,7 @@
         <source-file src="src/android/config_tcp.jar" target-dir="libs/" />
         <source-file src="src/android/smartconfig4.jar" target-dir="libs/" />
     </platform>
-<!-- 	ios platform -->
+
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
 			<feature name="esptouchPlugin">
@@ -42,4 +42,5 @@
 	   <framework src="Foundation.framework" />
 	   <framework src="src/ios/Esptouch.framework" custom="true" framework="true"/>
 	</platform>
+	
 </plugin>

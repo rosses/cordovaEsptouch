@@ -25,14 +25,16 @@
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
-    NSString *apBssid = (NSString *)[command.arguments objectAtIndex:1];
-    NSString *apPwd = (NSString *)[command.arguments objectAtIndex:2];
-    NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];
-    BOOL isSsidHidden = true;
+    NSString *apBssid = @"";
+    /*NSString *apBssid = (NSString *)[command.arguments objectAtIndex:1];*/
+    NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
+    /*NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];*/
+    BOOL isSsidHidden = false;
+    /*
     if([isSsidHiddenStr compare:@"NO"]==NSOrderedSame){
         isSsidHidden=false;
-    }
-    int taskCount = (int)[[command.arguments objectAtIndex:4] intValue];
+    }*/
+    int taskCount = 9;//(int)[[command.arguments objectAtIndex:4] intValue];
     self._esptouchTask =
     [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
     EspTouchDelegateImpl *esptouchDelegate=[[EspTouchDelegateImpl alloc]init];
@@ -60,7 +62,13 @@
                 const int maxDisplayCount = 5;
                 if ([firstResult isSuc])
                 {
-                    for (int i = 0; i < [esptouchResultArray count]; ++i)
+
+                    /* BytesIO **/
+                    //
+                     
+                    NSString *did = (NSString *)[firstResult bssid];
+                    NSString *ip = (NSString *)[firstResult ipAddrData];
+                    /*for (int i = 0; i < [esptouchResultArray count]; ++i)
                     {
                         ESPTouchResult *resultInArray = [esptouchResultArray objectAtIndex:i];
                         [mutableStr appendString:[resultInArray description]];
@@ -75,8 +83,12 @@
                     {
                         [mutableStr appendString:[NSString stringWithFormat:@"\nthere's %lu more result(s) without showing\n",(unsigned long)([esptouchResultArray count] - count)]];
                     }
+                    */
+
+                    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @" finished"];
+
                     CDVPluginResult* pluginResult = nil;
-                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"finished"];
+                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: outputString];
                     [pluginResult setKeepCallbackAsBool:true];
                     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                 }
