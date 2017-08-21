@@ -6,12 +6,14 @@
 @interface esptouchPlugin : CDVPlugin {
 	NSTimer *timer;
 	int timeTick;
+	DataTransform *_dataTransform;
+	ConfigClass *_configClass;  
 }
 
 @property (nonatomic, strong) NSCondition *_condition;
 //@property (atomic, strong) ESPTouchTask *_esptouchTask;
-@property (atomic, strong) DataTransform *_dataTransform;  
-@property (atomic, strong) ConfigClass *_configClass;  
+//@property (atomic, strong)   
+//@property (atomic, strong) 
 
 
 - (void)smartConfig:(CDVInvokedUrlCommand*)command;

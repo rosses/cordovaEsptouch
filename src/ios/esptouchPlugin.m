@@ -30,6 +30,19 @@
 
 @implementation esptouchPlugin
 
+-(void)timerEsp:(CDVInvokedUrlCommand *)command{
+    timeTick++;
+    if(timeTick == 60){
+        [timer invalidate];
+        [_configClass stopConfig];
+
+        CDVPluginResult* pluginResult = nil;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
+        [pluginResult setKeepCallbackAsBool:true];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+}
+
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
@@ -43,30 +56,18 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerEsp) userInfo:nil repeats:YES];
     
     //[self.commandDelegate runInBackground:^{
-        self._configClass = [[ConfigClass alloc] init];  
-        self._configClass.delegate = self; 
+        _configClass = [[ConfigClass alloc] init];  
+        _configClass.delegate = self; 
         NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
-        [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
+        [_configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
     //}];
 
-}
--(void)timerEsp:(CDVInvokedUrlCommand *)command{
-    timeTick++;
-    if(timeTick == 60){
-        [timer invalidate];
-        [this._configClass stopConfig];
-
-        CDVPluginResult* pluginResult = nil;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
-        [pluginResult setKeepCallbackAsBool:true];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    }
 }
 
 - (void) cancelConfig:(CDVInvokedUrlCommand *)command{
 
     [timer invalidate];
-    [this._configClass stopConfig];
+    [_configClass stopConfig];
 
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"cancel success"];
