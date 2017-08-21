@@ -10,7 +10,7 @@
 	ConfigClass *_configClass;  
 }
 
-@property (nonatomic, strong) NSCondition *_condition;
+//@property (nonatomic, strong) NSCondition *_condition;
 //@property (atomic, strong) ESPTouchTask *_esptouchTask;
 //@property (atomic, strong)   
 //@property (atomic, strong) 

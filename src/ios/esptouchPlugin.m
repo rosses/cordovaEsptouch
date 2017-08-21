@@ -30,21 +30,14 @@
 
 @implementation esptouchPlugin
 
--(void)timerEsp:(CDVInvokedUrlCommand *)command{
+-(void)timerEsp {
     timeTick++;
     if(timeTick == 60){
-        [timer invalidate];
-        [_configClass stopConfig];
-
-        CDVPluginResult* pluginResult = nil;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
-        [pluginResult setKeepCallbackAsBool:true];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        self.cancelConfig();
     }
 }
 
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
-    [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
 
@@ -80,7 +73,7 @@
 - (void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel
 {
     NSLog(@"ESPTouchPlugin: SUCCESS");
-    NSString *did = deviceModel.div;
+    NSString *did = deviceModel.did;
     NSString *om = deviceModel.orderMarking;
     NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, om,  @"finished"];
 
