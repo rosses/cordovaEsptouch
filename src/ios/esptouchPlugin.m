@@ -46,7 +46,8 @@
     //self._configClass.delegate = self; 
     NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
     [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
-    NSLog(@"ESPTouchPlugin: Now runInBackground");
+    //self._configClass.delegate
+    /*NSLog(@"ESPTouchPlugin: Now runInBackground");
     [self._configClass.delegate runInBackground:^{
         NSLog(@"ESPTouchPlugin: dispatch_queue_t");
         dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -75,7 +76,7 @@
 
         });
     }];
-
+    */
     
     /*
     NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @"finished"];
@@ -104,12 +105,12 @@
     [pluginResult setKeepCallbackAsBool:true];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
-/*
+
 #pragma mark ------<ConfigDelegate>
 //Configuration of equipment agent method of success
 - (void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel
 {
     NSLog(@"ESPTouchPlugin: SUCcESS");
 }
-*/
+
 @end
