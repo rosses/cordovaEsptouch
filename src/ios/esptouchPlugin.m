@@ -64,12 +64,13 @@
 
 
 - (void) cancelConfig:(CDVInvokedUrlCommand *)command{
-    [self._condition lock];
+    /*[self._condition lock];
     if (self._esptouchTask != nil)
     {
         [self._esptouchTask interrupt];
     }
     [self._condition unlock];
+    */
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"cancel success"];
     [pluginResult setKeepCallbackAsBool:true];
