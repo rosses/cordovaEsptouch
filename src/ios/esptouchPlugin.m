@@ -34,32 +34,25 @@
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
-    NSTimer *timer;
-    int timeTick;
 
     NSLog(@"ESPTouchPlugin: for Cordova by rosses");
     NSLog(@"ESPTouchPlugin: apSsid--->apPwd");
     NSLog(@"ESPTouchPlugin: %@ --> %@", apSsid, apPwd);
 
-
+    [timer invalidate];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerEsp) userInfo:nil repeats:YES];
+    
     [self.commandDelegate runInBackground:^{
-        timeTick = 0;
         self._configClass = [[ConfigClass alloc] init];  
         self._configClass.delegate = self; 
         NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
         [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
-        
-        [timer invalidate];
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerEsp) userInfo:nil repeats:YES];
-
     }];
 
 }
 -(void)timerEsp{
     timeTick++;
-    //NSString *timeString =[[NSString alloc] initWithFormat:@"%d", timeTick];
-    //self.display.text = timeString;
-    if(timer == 60){
+    if(timeTick == 60){
         [timer invalidate];
 
         CDVPluginResult* pluginResult = nil;
