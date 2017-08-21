@@ -9,7 +9,7 @@
 	DataTransform *_dataTransform;
 	ConfigClass *_configClass;  
 }
-
+@property NSString * callbackId;
 //@property (nonatomic, strong) NSCondition *_condition;
 //@property (atomic, strong) ESPTouchTask *_esptouchTask;
 //@property (atomic, strong)   

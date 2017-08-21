@@ -33,14 +33,20 @@
 -(void)timerEsp {
     timeTick++;
     if(timeTick == 60){
-        self.cancelConfig();
+        [timer invalidate];
+        [_configClass stopConfig];
+
+        CDVPluginResult* pluginResult = nil;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
+        [pluginResult setKeepCallbackAsBool:true];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
     }
 }
 
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
-
+    self.callbackId = command.callbackId;
     NSLog(@"ESPTouchPlugin: for Cordova by rosses");
     NSLog(@"ESPTouchPlugin: apSsid--->apPwd");
     NSLog(@"ESPTouchPlugin: %@ --> %@", apSsid, apPwd);
