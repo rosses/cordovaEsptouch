@@ -36,8 +36,24 @@
         [timer invalidate];
         [_configClass stopConfig];
 
+        NSString *res = @"ERR";
+        NSString *did = @"";
+        NSString *ip = @"";
+        NSString *mac = @"";
+
+        NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        res, @"", 
+                                        did, @"",
+                                        ip, @"",
+                                        mac, @"",
+                                        nil];
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
+    NSString *resultAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
         CDVPluginResult* pluginResult = nil;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: resultAsString];
         [pluginResult setKeepCallbackAsBool:true];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
     }
@@ -54,12 +70,10 @@
     [timer invalidate];
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerEsp) userInfo:nil repeats:YES];
     
-    //[self.commandDelegate runInBackground:^{
-        _configClass = [[ConfigClass alloc] init];  
-        _configClass.delegate = self; 
-        NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
-        [_configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
-    //}];
+    _configClass = [[ConfigClass alloc] init];  
+    _configClass.delegate = self; 
+    NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
+    [_configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
 
 }
 
@@ -68,8 +82,24 @@
     [timer invalidate];
     [_configClass stopConfig];
 
+    NSString *res = @"ERR";
+    NSString *did = @"";
+    NSString *ip = @"";
+    NSString *mac = @"";
+
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    res, @"", 
+                                    did, @"",
+                                    ip, @"",
+                                    mac, @"",
+                                    nil];
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
+    NSString *resultAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
     CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"cancel success"];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: resultAsString];
     [pluginResult setKeepCallbackAsBool:true];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
@@ -79,12 +109,28 @@
 - (void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel
 {
     NSLog(@"ESPTouchPlugin: SUCCESS");
+
+    [timer invalidate];
+    [_configClass stopConfig];
+
+    NSString *res = @"OK";
     NSString *did = deviceModel.did;
-    NSString *om = deviceModel.orderMarking;
-    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, om,  @"finished"];
+    NSString *mac = deviceModel.dmac;
+    NSString *ip = @"";
+
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    res, @"", 
+                                    did, @"",
+                                    ip, @"",
+                                    mac, @"",
+                                    nil];
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
+    NSString *resultAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
     CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: outputString];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: resultAsString];
     [pluginResult setKeepCallbackAsBool:true];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
