@@ -42,18 +42,19 @@
     [timer invalidate];
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerEsp) userInfo:nil repeats:YES];
     
-    [self.commandDelegate runInBackground:^{
+    //[self.commandDelegate runInBackground:^{
         self._configClass = [[ConfigClass alloc] init];  
         self._configClass.delegate = self; 
         NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
         [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
-    }];
+    //}];
 
 }
--(void)timerEsp{
+-(void)timerEsp:(CDVInvokedUrlCommand *)command{
     timeTick++;
     if(timeTick == 60){
         [timer invalidate];
+        [this._configClass stopConfig];
 
         CDVPluginResult* pluginResult = nil;
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
@@ -65,6 +66,7 @@
 - (void) cancelConfig:(CDVInvokedUrlCommand *)command{
 
     [timer invalidate];
+    [this._configClass stopConfig];
 
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"cancel success"];

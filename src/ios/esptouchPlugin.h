@@ -3,9 +3,10 @@
 #import "DataTransform.h"
 #import "ConfigClass.h"
 
-@interface esptouchPlugin : CDVPlugin
-NSTimer *timer;
-int timeTick;
+@interface esptouchPlugin : CDVPlugin {
+	NSTimer *timer;
+	int timeTick;
+}
 
 @property (nonatomic, strong) NSCondition *_condition;
 //@property (atomic, strong) ESPTouchTask *_esptouchTask;
