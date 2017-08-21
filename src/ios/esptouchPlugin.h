@@ -1,7 +1,7 @@
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVPluginResult.h>
-#import <DataTransform.h>
-#import <ConfigClass.h>
+#import "DataTransform.h"
+#import "ConfigClass.h"
 
 @interface esptouchPlugin : CDVPlugin
 @property (nonatomic, strong) NSCondition *_condition;

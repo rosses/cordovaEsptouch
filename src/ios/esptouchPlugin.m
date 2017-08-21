@@ -42,7 +42,7 @@
     NSLog(@"ESPTouchPlugin: -------------------");
 
     self._configClass = [[ConfigClass alloc] init];  
-    self._configClass.delegate = self; 
+    //self._configClass.delegate = self; 
 
     [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
     /*
