@@ -15,21 +15,7 @@
         [timer invalidate];
         [_configClass stopConfig];
 
-        NSString *res = @"ERR";
-        NSString *did = @"";
-        NSString *ip = @"";
-        NSString *mac = @"";
-
-        NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        res, @"", 
-                                        did, @"",
-                                        ip, @"",
-                                        mac, @"",
-                                        nil];
-
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
-    NSString *resultAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSString *resultAsString = [NSString stringWithFormat:@"{\"res\":\"%@\",\"did\":\"%@\",\"ip\":\"%@\",\"mac\":\"%@\"}", @"ERR", @"", @"", @""];
 
         CDVPluginResult* pluginResult = nil;
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: resultAsString];
@@ -61,21 +47,7 @@
     [timer invalidate];
     [_configClass stopConfig];
 
-    NSString *res = @"ERR";
-    NSString *did = @"";
-    NSString *ip = @"";
-    NSString *mac = @"";
-
-    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    res, @"", 
-                                    did, @"",
-                                    ip, @"",
-                                    mac, @"",
-                                    nil];
-
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
-    NSString *resultAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *resultAsString = [NSString stringWithFormat:@"{\"res\":\"%@\",\"did\":\"%@\",\"ip\":\"%@\",\"mac\":\"%@\"}", @"ERR", @"", @"", @""];
 
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: resultAsString];
@@ -91,21 +63,7 @@
     [timer invalidate];
     [_configClass stopConfig];
 
-    NSString *res = @"OK";
-    NSString *did = deviceModel.did;
-    NSString *mac = deviceModel.dmac;
-    NSString *ip = @"";
-
-    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    res, @"", 
-                                    did, @"",
-                                    ip, @"",
-                                    mac, @"",
-                                    nil];
-
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
-    NSString *resultAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *resultAsString = [NSString stringWithFormat:@"{\"res\":\"%@\",\"did\":\"%@\",\"ip\":\"%@\",\"mac\":\"%@\"}", @"OK", deviceModel.did, @"", deviceModel.dmac];
 
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: resultAsString];
