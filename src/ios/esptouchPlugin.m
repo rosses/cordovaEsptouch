@@ -39,12 +39,44 @@
     /*NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];*/
     
     NSLog(@"ESPTouchPlugin: for Cordova by rosses");
-    NSLog(@"ESPTouchPlugin: -------------------");
+    NSLog(@"ESPTouchPlugin: apSsid--->apPwd");
+    NSLog(@"ESPTouchPlugin: %@ --> %@", apSsid, apPwd);
 
     self._configClass = [[ConfigClass alloc] init];  
     //self._configClass.delegate = self; 
-
+    NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
     [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
+    NSLog(@"ESPTouchPlugin: Now runInBackground");
+    [self._configClass.delegate runInBackground:^{
+        NSLog(@"ESPTouchPlugin: dispatch_queue_t");
+        dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            NSLog(@"ESPTouchPlugin: async");
+
+            NSString *daStr = @"imlink";
+            const char *queueName = [daStr UTF8String];
+            NSLog(@"ESPTouchPlugin: myQueue");
+            dispatch_queue_t myQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
+            //DeviceModel *deviceModel = [self._configClass.delegate];
+            
+            dispatch_async(myQueue, ^{
+
+                //NSLog(@"ESPTouchPlugin: %@", deviceModel);
+                NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", @"chao", @"ctm",  @"fail"];
+                CDVPluginResult* pluginResult = nil;
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: outputString];
+                [pluginResult setKeepCallbackAsBool:true];
+                [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+            });
+
+
+
+
+        });
+    ];
+
+    
     /*
     NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @"finished"];
 
@@ -54,11 +86,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     */
 
-    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", apSsid, apPwd,  @"fail"];
-    CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: outputString];
-    [pluginResult setKeepCallbackAsBool:true];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
 
 }
 
@@ -76,11 +104,12 @@
     [pluginResult setKeepCallbackAsBool:true];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
+/*
 #pragma mark ------<ConfigDelegate>
 //Configuration of equipment agent method of success
 - (void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel
 {
     NSLog(@"ESPTouchPlugin: SUCcESS");
 }
-
+*/
 @end
