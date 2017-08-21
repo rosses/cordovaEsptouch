@@ -34,75 +34,47 @@
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
     NSString *apBssid = @"";
-    /*NSString *apBssid = (NSString *)[command.arguments objectAtIndex:1];*/
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
-    /*NSString *isSsidHiddenStr=(NSString *)[command.arguments objectAtIndex:3];*/
-    
+    NSTimer *timer;
+    int timeTick;
+
     NSLog(@"ESPTouchPlugin: for Cordova by rosses");
     NSLog(@"ESPTouchPlugin: apSsid--->apPwd");
     NSLog(@"ESPTouchPlugin: %@ --> %@", apSsid, apPwd);
 
 
     [self.commandDelegate runInBackground:^{
+        timeTick = 0;
         NSString* payload = nil;
         self._configClass = [[ConfigClass alloc] init];  
         self._configClass.delegate = self; 
         NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
         [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
         
-        NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", @"chao", @"ctm",  @"fail"];
-        CDVPluginResult* pluginResult = nil;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: outputString];
-        [pluginResult setKeepCallbackAsBool:true];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        [timer invalidate];
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerEsp) userInfo:nil repeats:YES];
+
     }];
-
-    //self._configClass.delegate
-    /*NSLog(@"ESPTouchPlugin: Now runInBackground");
-    [self._configClass.delegate runInBackground:^{
-        NSLog(@"ESPTouchPlugin: dispatch_queue_t");
-        dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^{
-            NSLog(@"ESPTouchPlugin: async");
-            NSString *daStr = @"imlink";
-            const char *queueName = [daStr UTF8String];
-            NSLog(@"ESPTouchPlugin: myQueue");
-            dispatch_queue_t myQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
-            //DeviceModel *deviceModel = [self._configClass.delegate];
-            dispatch_async(myQueue, ^{
-                //NSLog(@"ESPTouchPlugin: %@", deviceModel);
-                NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", @"chao", @"ctm",  @"fail"];
-                CDVPluginResult* pluginResult = nil;
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: outputString];
-                [pluginResult setKeepCallbackAsBool:true];
-                [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-            });
-        });
-    }];
-    */
-    
-    /*
-    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @"finished"];
-
-    CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: outputString];
-    [pluginResult setKeepCallbackAsBool:true];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    */
-
-
 
 }
+-(void)timerEsp{
+    timeTick++;
+    //NSString *timeString =[[NSString alloc] initWithFormat:@"%d", timeTick];
+    //self.display.text = timeString;
+    if(timer == 60){
+        [timer invalidate];
 
+        CDVPluginResult* pluginResult = nil;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"timeout"];
+        [pluginResult setKeepCallbackAsBool:true];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+}
 
 - (void) cancelConfig:(CDVInvokedUrlCommand *)command{
-    /*[self._condition lock];
-    if (self._esptouchTask != nil)
-    {
-        [self._esptouchTask interrupt];
-    }
-    [self._condition unlock];
-    */
+
+    [timer invalidate];
+
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"cancel success"];
     [pluginResult setKeepCallbackAsBool:true];
@@ -113,7 +85,15 @@
 //Configuration of equipment agent method of success
 - (void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel
 {
-    NSLog(@"ESPTouchPlugin: SUCcESS");
+    NSLog(@"ESPTouchPlugin: SUCCESS");
+    NSString *did = deviceModel.div;
+    NSString *om = deviceModel.orderMarking;
+    NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, om,  @"finished"];
+
+    CDVPluginResult* pluginResult = nil;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: outputString];
+    [pluginResult setKeepCallbackAsBool:true];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
