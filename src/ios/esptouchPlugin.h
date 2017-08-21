@@ -1,13 +1,5 @@
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVPluginResult.h>
-#import <smartConfig.h>
-#import <DataTransform.h>
-#import <RemoteSession.h>
-#import <DeviceModel.h>
-#import <ConfigClass.h>
-#import <HttpManager.h>
-
-
 
 @interface esptouchPlugin : CDVPlugin
 @property (nonatomic, strong) NSCondition *_condition;

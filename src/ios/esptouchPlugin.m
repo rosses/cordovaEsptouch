@@ -41,10 +41,10 @@
     NSLog(@"ESPTouchPlugin: for Cordova by rosses");
     NSLog(@"ESPTouchPlugin: -------------------");
 
-    _configClass = [[ConfigClass alloc] init];  
-    _configClass.delegate = self; 
+    self._configClass = [[ConfigClass alloc] init];  
+    self._configClass.delegate = self; 
 
-    [_configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
+    [self._configClass starConfigWithWifiName:apSsid andWifiPsw:apPwd andUserMarking: @"3517" andOrderMarking:@"" andDeviceName:@""];
     /*
     NSString *outputString = [NSString stringWithFormat:@"%@/%@/%@", did, ip,  @"finished"];
 
