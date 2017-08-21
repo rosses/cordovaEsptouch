@@ -58,7 +58,7 @@
             NSLog(@"ESPTouchPlugin: myQueue");
             dispatch_queue_t myQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
             //DeviceModel *deviceModel = [self._configClass.delegate];
-            
+
             dispatch_async(myQueue, ^{
 
                 //NSLog(@"ESPTouchPlugin: %@", deviceModel);
@@ -74,7 +74,7 @@
 
 
         });
-    ];
+    }];
 
     
     /*
