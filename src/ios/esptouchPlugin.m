@@ -33,7 +33,6 @@
 - (void) smartConfig:(CDVInvokedUrlCommand *)command{
     [self._condition lock];
     NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
-    NSString *apBssid = @"";
     NSString *apPwd = (NSString *)[command.arguments objectAtIndex:1];
     NSTimer *timer;
     int timeTick;
@@ -45,7 +44,6 @@
 
     [self.commandDelegate runInBackground:^{
         timeTick = 0;
-        NSString* payload = nil;
         self._configClass = [[ConfigClass alloc] init];  
         self._configClass.delegate = self; 
         NSLog(@"ESPTouchPlugin: starConfigWithWifiName");
