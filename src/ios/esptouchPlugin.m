@@ -5,27 +5,6 @@
 #import "DeviceModel.h"
 #import "ConfigClass.h"
 #import "HttpManager.h"
-/*
-@interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
-@property (nonatomic, strong) CDVInvokedUrlCommand *command;
-@property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
-
-@end
-*/
-/*
-@implementation EspTouchDelegateImpl
-
--(void) onEsptouchResultAddedWithResult: (ESPTouchResult *) result
-{
-    NSString *InetAddress=[ESP_NetUtil descriptionInetAddrByData:result.ipAddrData];
-    NSString *text=[NSString stringWithFormat:@"bssid=%@,InetAddress=%@",result.bssid,InetAddress];
-    CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: text];
-    [pluginResult setKeepCallbackAsBool:true];
-    //[self.commandDelegate sendPluginResult:pluginResult callbackId:self.command.callbackId];  //add by lianghuiyuan
-}
-@end
-*/
 
 
 @implementation esptouchPlugin
@@ -105,7 +84,6 @@
 }
 
 #pragma mark ------<ConfigDelegate>
-//Configuration of equipment agent method of success
 - (void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel
 {
     NSLog(@"ESPTouchPlugin: SUCCESS");
