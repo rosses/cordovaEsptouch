@@ -45,9 +45,12 @@
 		-->
 	   <header-file src="src/ios/ConfigClass.h"/>
 	   
+	   <header-file src="src/ios/GCDAsyncSocket.h"/>
+	   <source-file src="src/ios/GCDAsyncSocket.m"/>
+
 	   <header-file src="src/ios/RemoteSession.h"/>
 	   <source-file src="src/ios/RemoteSession.m"/>
-	   
+
 	   <header-file src="src/ios/DataTransform.h"/>
 	   <source-file src="src/ios/DataTransform.m"/>
 
@@ -63,7 +66,9 @@
        <header-file src="src/ios/smartConfig.h"/>
 	   <source-file src="src/ios/libSmartConfig.a" framework="true" />
 
+	   <framework src="CFNetwork.framework" />
 	   <framework src="Foundation.framework" />
+	   <framework src="Security.framework" />
 	   <framework src="CoreGraphics.framework" />
 	   <framework src="UIKit.framework" />
 
