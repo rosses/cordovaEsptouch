@@ -10,7 +10,7 @@
 #import "DataTransform.h"
 #import "ConfigClass.h"
 
-@interface esptouchPlugin : CDVPlugin {
+@interface iotButtonPlugin : CDVPlugin {
 	NSTimer *timer;
 	int timeTick;
 	DataTransform *_dataTransform;

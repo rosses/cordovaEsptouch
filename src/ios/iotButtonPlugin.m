@@ -6,7 +6,7 @@
 //  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
 //
 
-#import "esptouchPlugin.h"
+#import "iotButtonPlugin.h"
 #import "smartConfig.h"
 #import "DataTransform.h"
 #import "RemoteSession.h"
@@ -15,7 +15,7 @@
 #import "HttpManager.h"
 
 
-@implementation esptouchPlugin
+@implementation iotButtonPlugin
 
 -(void)timerEsp {
     timeTick++;
