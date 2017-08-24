@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 /**
  *  this class is used to parse byte array easy
  */

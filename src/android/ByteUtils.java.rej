@@ -1,0 +1,6 @@
+diff a/src/android/ByteUtils.java b/src/android/ByteUtils.java	(rejected hunks)
+@@ -0,3 +1,4 @@
++package com.ogemray.smartconfig4demo.utils;
+ 
+ import android.text.TextUtils;
+ 
