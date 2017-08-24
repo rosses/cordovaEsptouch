@@ -1,47 +1,30 @@
-# cordovaEsptouch
-a cordova plugin for Esptouch which smartconfig esp8266
+# iotButtonPlugin
+Plugin Cordova Esptouch c/ smartconfig esp8266 para Boton fabricado por Ogemray
 # Install
-cordova plugin add https://github.com/xumingxin7398/cordovaEsptouch.git
+cordova plugin add https://github.com/rosses/cordova-iot-button.git
 
-# usage
-1.esptouchPlugin.smartConfig 
+# Métodos
 
-//@apSsid,ssid of the wifi,for example: "wifiName"
+1.iotButtonPlugin.smartConfig 
 
-//@apBssid,bssid of the wifi,for example "b2:05:2f:92" 
+esptouchPlugin.smartConfig(SSID, Password, successFunction(json), errorFunction(json));
 
-//@apPassword,password of the wifi,for example: "wifiPassword" 
+SSID = Wifi
+Password = Clave Wifi
+successFunction = Retorna un string que se debe parsear a JSON con el resultado, IP, MAC y DeviceID
+errorFunction = Returna un string que se debe parsear a JSON con el resultado de ERROR e IP,MAC,DeviceID en blanco 
 
-//@isSsidHiddenStr,default "NO"
+2.iotButtonPlugin.cancelConfig
 
-//@taskResultCountStr,the count of device you want to config,for example:1
+iotButtonPlugin.cancelConfig(successFunction, cancelFunction);
 
-esptouchPlugin.smartConfig(apSsid,apBssid,apPassword,isSsidHiddenStr,taskResultCountStr, function(res) {
+Los parametros de los callback no son interesantes.
 
-  alert(res);
-  
-},function(error){
+# Importante
 
-  console.log(error);
-  
-});
+No debes llamar en 2 instancias a smartConfig, solo en 1, antes asegurece de llamar a cancelConfig. 2 llamadas a smartConfig pueden otorgar un resultado no deseado.
 
-2.esptouchPlugin.cancelConfig
+# Credits
 
-esptouchPlugin.cancelConfig(function(res) {
-
-	console.log(res);
-	
-}, function(error) {
-
-		console.log(error);
-		
-});
-
-#warning 
-
-you must call "esptouchPlugin.cancelConfig" when you want to stop the config,if not it will make some mistake when you call
-"esptouchPlugin.smartConfig" the other time.
-
-
-Since ios emulator does not support the SmartConfig feature,so I did not package the i386 architectures in the "Esptouch.framework".You need to remove i386 architectures in "Build Settings->Architectures" and test your project on a real iphone.
+ESPTouch de ExpressIf
+Ogemray extension (Fabricante)

@@ -12,8 +12,8 @@ import com.ogemray.smartconfig4.IEsptouchListener;
 import com.ogemray.smartconfig4.IEsptouchResult;
 import com.ogemray.smartconfig4.IEsptouchTask;
 import com.ogemray.smartconfig4.task.__IEsptouchTask;
-import com.ogemray.smartconfig4.util.BytesUtil;
-import com.ogemray.smartconfig4.utils.BytesIO;
+import com.ogemray.smartconfig4demo.util.BytesUtil;
+import com.ogemray.smartconfig4demo.utils.BytesIO;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
