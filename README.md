@@ -11,10 +11,10 @@ cordova plugin add https://github.com/rosses/cordova-iot-button.git
 esptouchPlugin.smartConfig(SSID, Password, successFunction(json), errorFunction(json));
 ```
 
-SSID = Wifi
-Password = Clave Wifi
-successFunction = Retorna un string que se debe parsear a JSON con el resultado, IP, MAC y DeviceID
-errorFunction = Returna un string que se debe parsear a JSON con el resultado de ERROR e IP,MAC,DeviceID en blanco 
+* SSID = Wifi
+* Password = Clave Wifi
+* successFunction = Retorna un string que se debe parsear a JSON con el resultado, IP, MAC y DeviceID
+* errorFunction = Returna un string que se debe parsear a JSON con el resultado de ERROR e IP,MAC,DeviceID en blanco 
 
 2.iotButtonPlugin.cancelConfig
 
