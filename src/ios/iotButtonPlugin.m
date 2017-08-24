@@ -1,3 +1,11 @@
+//
+//  iotButtonPlugin.m
+//  Interfaz Cordova
+//  cordova-iot-button: esp8266
+//
+//  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
+//
+
 #import "esptouchPlugin.h"
 #import "smartConfig.h"
 #import "DataTransform.h"

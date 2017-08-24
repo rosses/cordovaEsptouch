@@ -1,9 +1,8 @@
 //
 //  DeviceModel.m
-//  EShop
+//  cordova-iot-button: esp8266
 //
-//  Created by 林琳 on 2016/10/17.
-//  Copyright © 2016年 Ogemray. All rights reserved.
+//  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
 //
 
 #import "DeviceModel.h"

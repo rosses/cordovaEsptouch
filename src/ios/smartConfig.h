@@ -1,18 +1,17 @@
 //
 //  smartConfig.h
-//  smartConfig
+//  cordova-iot-button: esp8266
 //
-//  Created by sunrun on 14-8-27.
-//  Copyright (c) 2014年 sunrun. All rights reserved.
+//  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface smartConfig : NSObject
-//停止配置
+
 - (void)StopSmartConfig;
 
-//开始配置
+
 - (int )StartSmartConfigSetSSID:(NSString *)SSID andSetPassWord:(NSString *)Password andTokenString:(NSString *)tokenString;
 
 @end

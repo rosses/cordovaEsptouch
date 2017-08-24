@@ -1,3 +1,10 @@
+//
+//  iotButtonPlugin.h
+//  Interfaz Cordova
+//  cordova-iot-button: esp8266
+//
+//  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
+//
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVPluginResult.h>
 #import "DataTransform.h"
@@ -10,11 +17,6 @@
 	ConfigClass *_configClass;  
 }
 @property NSString * callbackId;
-//@property (nonatomic, strong) NSCondition *_condition;
-//@property (atomic, strong) ESPTouchTask *_esptouchTask;
-//@property (atomic, strong)   
-//@property (atomic, strong) 
-
 
 - (void)smartConfig:(CDVInvokedUrlCommand*)command;
 

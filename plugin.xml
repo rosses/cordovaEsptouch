@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin id="com.icubespace.cordova_esptouch" version="1.0"
+<plugin id="com.rosses.cordova_iotbutton" version="1.0"
         xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordova_esptouch</name>
-    <description>cordova EspTouch for esp8266</description>
-    <js-module name="esptouchPlugin" src="www/esptouchPlugin.js">
-        <clobbers target="esptouchPlugin"/>
+    <name>cordova_iotbutton</name>
+    <description>Cordova IoT Button - Ogemray EG003</description>
+    <js-module name="iotButtonPlugin" src="www/iotButtonPlugin.js">
+        <clobbers target="iotButtonPlugin"/>
     </js-module>
-<!-- 	android platform -->
+
+	<!-- 	android platform -->
     <platform name="android">
 		<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.INTERNET" />
@@ -16,13 +17,13 @@
 			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 		</config-file>
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="esptouchPlugin">
-                <param name="android-package" value="com.icubespace.cordova_esptouch.esptouchPlugin"/>
+            <feature name="iotButtonPlugin">
+                <param name="android-package" value="com.rosses.cordova_iotbutton.iotButtonPlugin"/>
             </feature>
         </config-file>
-		<source-file src="src/android/BytesIO.java" target-dir="src/com/ogemray/smartconfig4demo/utils/" />
-		<source-file src="src/android/ByteUtils.java" target-dir="src/com/ogemray/smartconfig4demo/utils/" />
-		<source-file src="src/android/esptouchPlugin.java" target-dir="src/com/icubespace/cordova_esptouch/" />
+		<source-file src="src/android/BytesIO.java" target-dir="src/com/rosses/smartconfig4/utils/" />
+		<source-file src="src/android/ByteUtils.java" target-dir="src/com/rosses/smartconfig4/utils/" />
+		<source-file src="src/android/iotButtonPlugin.java" target-dir="src/com/rosses/cordova_iotbutton/" />
         <source-file src="src/android/esptouch.jar" target-dir="libs/" />
         <source-file src="src/android/config_tcp.jar" target-dir="libs/" />
         <source-file src="src/android/smartconfig4.jar" target-dir="libs/" />
@@ -30,19 +31,11 @@
 
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
-			<feature name="esptouchPlugin">
-			 <param name="ios-package" value="esptouchPlugin"/>
+			<feature name="iotButtonPlugin">
+			 <param name="ios-package" value="iotButtonPlugin"/>
 		   </feature>
 	   </config-file>
-	   <!--
-	   <header-file src="src/ios/esptouchPlugin.h"/>
-       <source-file src="src/ios/esptouchPlugin.m"/>
-	   
-	   <framework src="CoreGraphics.framework" />
-	   <framework src="UIKit.framework" />
-	   <framework src="Foundation.framework" />
-	   <framework src="src/ios/Esptouch.framework" custom="true" framework="true"/>
-		-->
+
 	   <header-file src="src/ios/ConfigClass.h"/>
 	   
 	   <header-file src="src/ios/GCDAsyncSocket.h"/>
@@ -63,8 +56,8 @@
 	   <header-file src="src/ios/HttpManager.h"/>
 	   <source-file src="src/ios/HttpManager.m"/>
 
-	   <header-file src="src/ios/esptouchPlugin.h"/>
-       <source-file src="src/ios/esptouchPlugin.m"/>
+	   <header-file src="src/ios/iotButtonPlugin.h"/>
+       <source-file src="src/ios/iotButtonPlugin.m"/>
 
        <header-file src="src/ios/smartConfig.h"/>
 	   <source-file src="src/ios/libSmartConfig.a" framework="true" />

@@ -1,19 +1,19 @@
-package com.icubespace.cordova_esptouch;
+package com.rosses.cordova_iotbutton;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import java.util.List;
 
-import com.ogemray.smartcofig_tcp.model.EGetDevice;
-import com.ogemray.smartcofig_tcp.task.TCPSetupTask;
-import com.ogemray.smartconfig4.EsptouchTask;
-import com.ogemray.smartconfig4.IEsptouchListener;
-import com.ogemray.smartconfig4.IEsptouchResult;
-import com.ogemray.smartconfig4.IEsptouchTask;
-import com.ogemray.smartconfig4.task.__IEsptouchTask;
-import com.ogemray.smartconfig4.util.BytesUtil;
-import com.ogemray.smartconfig4demo.utils.BytesIO;
+import com.rosses.smartcofig_tcp.model.EGetDevice;
+import com.rosses.smartcofig_tcp.task.TCPSetupTask;
+import com.rosses.smartconfig4.EsptouchTask;
+import com.rosses.smartconfig4.IEsptouchListener;
+import com.rosses.smartconfig4.IEsptouchResult;
+import com.rosses.smartconfig4.IEsptouchTask;
+import com.rosses.smartconfig4.task.__IEsptouchTask;
+import com.rosses.smartconfig4.util.BytesUtil;
+import com.rosses.smartconfig4.utils.BytesIO;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class esptouchPlugin extends CordovaPlugin {
+public class iotButtonPlugin extends CordovaPlugin {
 	
 	CallbackContext receivingCallbackContext = null;
 	IEsptouchTask mEsptouchTask;
@@ -37,14 +37,9 @@ public class esptouchPlugin extends CordovaPlugin {
         if (action.equals("smartConfig")) {
             final String apSsid = args.getString(0);
             final String apPassword = args.getString(1);
-            final int taskResultCount = 1; // sirve para + de 1 boton
+            final int taskResultCount = 1; 
             final Object mLock = new Object();
-            
-            System.out.println("ESP TOUCHCONFIG NAME: "+apSsid);
-            System.out.println("ESP TOUCHCONFIG PASS: "+apPassword);
-            
-            
-            
+
             cordova.getThreadPool().execute(
             new Runnable() {
                 public void run() {
@@ -80,15 +75,12 @@ public class esptouchPlugin extends CordovaPlugin {
 
                             int len = io.getShort();
 
-                            //Estado, para ver por ejemplo bateria baja
                             byte[] deviceState = io.getBytes(len);
                             
                             EGetDevice eGetDevice = new EGetDevice();
                             eGetDevice.setDid(did);
                             eGetDevice.setIp(ip);
                             eGetDevice.setDmac(macString);
-
-                            //Custom
                             eGetDevice.setUserMarking("3517");
                             eGetDevice.setOrderMarking("");
                             eGetDevice.setDeviceName("");
@@ -108,7 +100,6 @@ public class esptouchPlugin extends CordovaPlugin {
                             PluginResult result = new PluginResult(PluginResult.Status.OK, output.toString());
                             result.setKeepCallback(true); 
                             receivingCallbackContext.sendPluginResult(result);
-                            //receivingCallbackContext.success("finished");
                         } else {
                             
                             JSONObject output = new JSONObject();
@@ -130,13 +121,13 @@ public class esptouchPlugin extends CordovaPlugin {
         }
         else if (action.equals("cancelConfig")) {
             mEsptouchTask.interrupt();
-            PluginResult result = new PluginResult(PluginResult.Status.OK, "cancel success");
-            result.setKeepCallback(true);           // keep callback after this call
+            PluginResult result = new PluginResult(PluginResult.Status.OK, "cancelado");
+            result.setKeepCallback(true);     
             receivingCallbackContext.sendPluginResult(result);
             return true;
         }
         else{
-            callbackContext.error("can not find the function "+action);
+            callbackContext.error("no encontrada la funcion "+action);
             return false;
         }
     }
@@ -147,8 +138,8 @@ public class esptouchPlugin extends CordovaPlugin {
         public void onEsptouchResultAdded(final IEsptouchResult result) {
             String text = "bssid="+result.toString();//+ result.getBssid()+",InetAddress="+result.getInetAddress().getHostAddress();
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, text);
-            pluginResult.setKeepCallback(true);           // keep callback after this call
-            //receivingCallbackContext.sendPluginResult(pluginResult);    //modified by lianghuiyuan
+            pluginResult.setKeepCallback(true);     
+            //receivingCallbackContext.sendPluginResult(pluginResult);   
         }
     };
 

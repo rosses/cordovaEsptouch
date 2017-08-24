@@ -1,19 +1,16 @@
 //
 //  ConfigClass.h
-//  SmartConfigDemo
+//  cordova-iot-button: esp8266
 //
-//  Created by 林琳 on 2016/11/18.
-//  Copyright © 2016年 Ogemray. All rights reserved.
+//  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "DeviceModel.h"
 
-//Equipment port
 #define kDevicePort 17744
 
-//Multicast IP and Port
-#define KMulticastIp @"239.145.145.145"
+#define KMulticastIp @"127.0.0.1"
 #define KMulticastPort 10001
 
 
@@ -22,9 +19,9 @@
 @required
 
 /**
- *  Configuration equipment successfully
+ *  Configuracion basada en la mac
  *
- *  deviceMac:  The MAC address of the equipment
+ *  deviceMac:  Mac del boton
  */
 -(void)configSuccessWithDeviceMac:(DeviceModel *)deviceModel;
 
@@ -35,7 +32,7 @@
 @property (nonatomic,assign) id <ConfigDelegate> delegate;
 
 /**
- *  Start the configuration
+ *  Funcion inicial, del SDK
  *
  *  wifiName:   WiFi name
  *  wifiPsw:    WiFi password
@@ -47,7 +44,7 @@
                 andDeviceName:(NSString *)deviceName;
 
 
-/** Stop configuration */
+/** Stop */
 -(void)stopConfig;
 
 @end

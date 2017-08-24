@@ -1,23 +1,21 @@
 //
 //  RemoteSession.h
-//  EShop
+//  cordova-iot-button: esp8266
 //
-//  Created by 林琳 on 2016/10/15.
-//  Copyright © 2016年 Ogemray. All rights reserved.
+//  Copyright © 2017 - Roberto Osses - Chile. All rights reserved.
 //
+
 
 #import <Foundation/Foundation.h>
 
 @interface RemoteSession : NSObject
 
-/** 账号 */
 @property (nonatomic,copy) NSString *account;
-/** 密码 */
+
 @property (nonatomic,copy) NSString *psw;
 
-/** 用户标识 */
 @property (nonatomic,copy) NSString *userMarking;
-/** 手机登录令牌 */
+
 @property (nonatomic,copy) NSString *ssToken;
 
 @property (nonatomic,copy)NSString *companySerialNum;

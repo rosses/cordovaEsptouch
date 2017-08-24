@@ -1,4 +1,4 @@
-package com.ogemray.smartconfig4demo.utils;
+package com.rosses.smartconfig4.utils;
 
 import android.text.TextUtils;
 import android.util.Log;
