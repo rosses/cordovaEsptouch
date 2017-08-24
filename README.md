@@ -1,13 +1,15 @@
-# iotButtonPlugin
+#  iotButtonPlugin
 Plugin Cordova Esptouch c/ smartconfig esp8266 para Boton fabricado por Ogemray
-# Install
+## Instalación
 cordova plugin add https://github.com/rosses/cordova-iot-button.git
 
-# Métodos
+## Métodos
 
 1.iotButtonPlugin.smartConfig 
 
+```javascript
 esptouchPlugin.smartConfig(SSID, Password, successFunction(json), errorFunction(json));
+```
 
 SSID = Wifi
 Password = Clave Wifi
@@ -16,8 +18,9 @@ errorFunction = Returna un string que se debe parsear a JSON con el resultado de
 
 2.iotButtonPlugin.cancelConfig
 
+```javascript
 iotButtonPlugin.cancelConfig(successFunction, cancelFunction);
-
+```
 Los parametros de los callback no son interesantes.
 
 # Importante
