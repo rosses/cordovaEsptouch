@@ -3,10 +3,10 @@ cordova = require('cordova');
 
 module.exports = {
 	smartConfig:function(apSsid,apPassword,successCallback, errorCallback){
-		exec(successCallback, errorCallback, "esptouchPlugin", "smartConfig", [apSsid,apPassword]);
+		exec(successCallback, errorCallback, "iotButtonPlugin", "smartConfig", [apSsid,apPassword]);
 	},
 	
 	cancelConfig:function(successCallback, errorCallback){
-		exec(successCallback, errorCallback, "esptouchPlugin", "cancelConfig", []);
+		exec(successCallback, errorCallback, "iotButtonPlugin", "cancelConfig", []);
 	}
 }
