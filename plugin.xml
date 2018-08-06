@@ -4,23 +4,28 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova_iotbutton</name>
     <description>Cordova IoT Button - Ogemray EG003</description>
+
+    <engines>
+	    <engine name="cordova-android" version=">=4.0.0" />
+    </engines>
+
     <js-module name="iotButtonPlugin" src="www/iotButtonPlugin.js">
         <clobbers target="iotButtonPlugin"/>
     </js-module>
 
 	<!-- 	android platform -->
     <platform name="android">
-		<edit-config file="AndroidManifest.xml" target="/manifest" mode="marge">
+		<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.INTERNET" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-		</edit-config>
-        <edit-config parent="/*" file="res/xml/config.xml" mode="add">
+		</config-file>
+        <config-file parent="/*" target="res/xml/config.xml">
             <feature name="iotButtonPlugin">
                 <param name="android-package" value="com.rosses.cordova_iotbutton.iotButtonPlugin"/>
             </feature>
-        </edit-config>
+        </config-file>
 		<source-file src="src/android/BytesIO.java" target-dir="src/com/ogemray/smartconfig4demo/utils/" />
 		<source-file src="src/android/ByteUtils.java" target-dir="src/com/ogemray/smartconfig4demo/utils/" />
 		<source-file src="src/android/iotButtonPlugin.java" target-dir="src/com/rosses/cordova_iotbutton/" />
