@@ -27,12 +27,12 @@
                 <param name="android-package" value="com.rosses.cordova_iotbutton.iotButtonPlugin"/>
             </feature>
         </config-file>
-		<source-file src="src/android/BytesIO.java" target-dir="src/com/ogemray/smartconfig4demo/utils/" />
-		<source-file src="src/android/ByteUtils.java" target-dir="src/com/ogemray/smartconfig4demo/utils/" />
-		<source-file src="src/android/iotButtonPlugin.java" target-dir="src/com/rosses/cordova_iotbutton/" />
-        <source-file src="src/android/esptouch.jar" target-dir="libs/" />
-        <source-file src="src/android/config_tcp.jar" target-dir="libs/" />
-        <source-file src="src/android/smartconfig4.jar" target-dir="libs/" />
+		<resource-file src="src/android/BytesIO.java" target="src/com/ogemray/smartconfig4demo/utils/BytesIO.java" />
+		<resource-file src="src/android/ByteUtils.java" target="src/com/ogemray/smartconfig4demo/utils/ByteUtils.java" />
+		<resource-file src="src/android/iotButtonPlugin.java" target="src/com/rosses/cordova_iotbutton/iotButtonPlugin.java" />
+        <resource-file src="src/android/esptouch.jar" target="libs/esptouch.jar" />
+        <resource-file src="src/android/config_tcp.jar" target="libs/config_tcp.jar" />
+        <resource-file src="src/android/smartconfig4.jar" target="libs/smartconfig4.jar" />
     </platform>
 
 	<platform name="ios">
