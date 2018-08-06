@@ -16,23 +16,23 @@
 
 	<!-- 	android platform -->
     <platform name="android">
-		<config-file target="AndroidManifest.xml" parent="/*">
+		<edit-config target="app/src/main/AndroidManifest.xml" parent="/*" mode="merge">
 			<uses-permission android:name="android.permission.INTERNET" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-		</config-file>
-        <config-file parent="/*" target="res/xml/config.xml">
+		</edit-config>
+        <edit-config parent="/*" target="app/src/main/res/xml/config.xml" mode="merge">
             <feature name="iotButtonPlugin">
                 <param name="android-package" value="com.rosses.cordova_iotbutton.iotButtonPlugin"/>
             </feature>
-        </config-file>
-		<resource-file src="src/android/BytesIO.java" target="src/com/ogemray/smartconfig4demo/utils/BytesIO.java" />
-		<resource-file src="src/android/ByteUtils.java" target="src/com/ogemray/smartconfig4demo/utils/ByteUtils.java" />
-		<resource-file src="src/android/iotButtonPlugin.java" target="src/com/rosses/cordova_iotbutton/iotButtonPlugin.java" />
-        <resource-file src="src/android/esptouch.jar" target="libs/esptouch.jar" />
-        <resource-file src="src/android/config_tcp.jar" target="libs/config_tcp.jar" />
-        <resource-file src="src/android/smartconfig4.jar" target="libs/smartconfig4.jar" />
+        </edit-config>
+		<resource-file src="src/android/BytesIO.java" target="app/src/com/ogemray/smartconfig4demo/utils/BytesIO.java" />
+		<resource-file src="src/android/ByteUtils.java" target="app/src/com/ogemray/smartconfig4demo/utils/ByteUtils.java" />
+		<resource-file src="src/android/iotButtonPlugin.java" target="app/src/com/rosses/cordova_iotbutton/iotButtonPlugin.java" />
+        <resource-file src="src/android/esptouch.jar" target="app/libs/esptouch.jar" />
+        <resource-file src="src/android/config_tcp.jar" target="app/libs/config_tcp.jar" />
+        <resource-file src="src/android/smartconfig4.jar" target="app/libs/smartconfig4.jar" />
     </platform>
 
 	<platform name="ios">
