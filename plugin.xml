@@ -6,7 +6,8 @@
     <description>Cordova IoT Button - Ogemray EG003</description>
 
     <engines>
-	    <engine name="cordova-android" version=">=4.0.0" />
+        <engine name="cordova" version=">=7.1.0"/>
+        <engine name="cordova-android" version=">=6.3.0" />
     </engines>
 
     <js-module name="iotButtonPlugin" src="www/iotButtonPlugin.js">
@@ -15,7 +16,7 @@
 
 	<!-- 	android platform -->
     <platform name="android">
-		<config-file target="AndroidManifest.xml" parent="/manifest">
+		<config-file target="AndroidManifest.xml" parent="/*">
 			<uses-permission android:name="android.permission.INTERNET" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
