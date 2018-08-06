@@ -16,13 +16,13 @@
 
 	<!-- 	android platform -->
     <platform name="android">
-		<edit-config target="app/src/main/AndroidManifest.xml" parent="/*" mode="overwrite">
+		<edit-config target="app/src/main/AndroidManifest.xml" parent="/*" mode="merge">
 			<uses-permission android:name="android.permission.INTERNET" />
-			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 		</edit-config>
-        <edit-config parent="/*" target="app/src/main/res/xml/config.xml" mode="overwrite">
+        <edit-config parent="/*" target="app/src/main/res/xml/config.xml" mode="merge">
             <feature name="iotButtonPlugin">
                 <param name="android-package" value="com.rosses.cordova_iotbutton.iotButtonPlugin"/>
             </feature>
