@@ -16,7 +16,7 @@
 
 	<!-- 	android platform -->
     <platform name="android">
-		<edit-config target="app/src/main/AndroidManifest.xml" parent="/*" mode="merge">
+		<edit-config target="app/src/main/AndroidManifest.xml" parent="/*" mode="overwrite">
 			<uses-permission android:name="android.permission.INTERNET" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
