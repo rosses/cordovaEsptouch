@@ -10,12 +10,14 @@
 
 	<!-- 	android platform -->
     <platform name="android">
-		<config-file target="AndroidManifest.xml" parent="/manifest">
+    	
+		<config-file target="AndroidManifest.xml" parent="/*">
 			<uses-permission android:name="android.permission.INTERNET" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 		</config-file>
+
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="iotButtonPlugin">
                 <param name="android-package" value="com.rosses.cordova_iotbutton.iotButtonPlugin"/>
