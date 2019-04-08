@@ -1,0 +1,19 @@
+{
+  "name": "cve",
+  "version": "1.0.0",
+  "description": "**Cordova espTouch for Abastible Chile**",
+  "main": "iotButtonPlugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosses/cve.git"
+  },
+  "author": "Roberto Osses",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosses/cve/issues"
+  },
+  "homepage": "https://github.com/rosses/cve#readme"
+}
